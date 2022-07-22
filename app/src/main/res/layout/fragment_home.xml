@@ -18,7 +18,7 @@
 
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/iv_loyalty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
@@ -26,7 +26,7 @@
             android:src="@drawable/loyalty_af_br_ru" />
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/iv_figures"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -42,7 +42,7 @@
 
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/iv_line_number"
                 android:layout_width="50dp"
                 android:layout_height="40dp"
                 android:layout_weight="3"
@@ -51,7 +51,7 @@
                 android:src="@drawable/figl2" />
 
             <ImageView
-                android:id="@+id/imageView7"
+                android:id="@+id/iv_black_arrow"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
                 android:layout_weight="3"
@@ -60,7 +60,7 @@
                 android:src="@drawable/figsetapreta" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/tv_top_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginRight="10dp"
@@ -71,6 +71,7 @@
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/iv_card_action"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/actionc24"

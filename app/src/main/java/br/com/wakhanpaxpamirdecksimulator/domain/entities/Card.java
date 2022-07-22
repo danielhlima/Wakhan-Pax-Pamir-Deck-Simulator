@@ -1,29 +1,78 @@
 package br.com.wakhanpaxpamirdecksimulator.domain.entities;
 
-import android.graphics.drawable.Drawable;
-
 public class Card {
 
     private String name;
-    private boolean isFront;
-    private Drawable drawable;
+    private String loyalty;
+    private String figures;
+    private String action;
+    private int lineChosen;
+    private int[] linesBack;
+    private boolean isTop;
 
-    public Card(String name, boolean isClassic, boolean mustHave, boolean isFront, Drawable drawable,
-                boolean isRailAge) {
+    public Card(String name, String loyalty, String figures, String action, int lineChosen, int[] linesBack, boolean isTop) {
         this.name = name;
-        this.isFront = isFront;
-        this.drawable = drawable;
+        this.loyalty = loyalty;
+        this.figures = figures;
+        this.action = action;
+        this.lineChosen = lineChosen;
+        this.linesBack = linesBack;
+        this.isTop = isTop;
     }
 
     public String getName() {
         return name;
     }
 
-    public boolean isFront() {
-        return isFront;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Drawable getDrawable() {
-        return drawable;
+    public String getLoyalty() {
+        return loyalty;
+    }
+
+    public void setLoyalty(String loyalty) {
+        this.loyalty = loyalty;
+    }
+
+    public String getFigures() {
+        return figures;
+    }
+
+    public void setFigures(String figures) {
+        this.figures = figures;
+    }
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
+
+    public int getLineChosen() {
+        return lineChosen;
+    }
+
+    public void setLineChosen(int lineChosen) {
+        this.lineChosen = lineChosen;
+    }
+
+    public int[] getLinesBack() {
+        return linesBack;
+    }
+
+    public void setLinesBack(int[] linesBack) {
+        this.linesBack = linesBack;
+    }
+
+    public boolean isTop() {
+        return isTop;
+    }
+
+    public void setTop(boolean top) {
+        isTop = top;
     }
 }

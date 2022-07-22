@@ -22,7 +22,7 @@ public class LoadDeckPresenter implements DataOut.Callback<List<Card>> {
     public LoadDeckPresenter(Context mContext, DataOut.Callback<List<Card>> callback) {
         this.mContext = mContext;
         this.callback = callback;
-        repository = new LoadDeckRepositoryImpl(mContext);
+        repository = new LoadDeckRepositoryImpl();
         useCase = new LoadDeckUseCase(repository, this);
     }
 
