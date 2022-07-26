@@ -24,17 +24,17 @@ public class Card extends br.com.wakhanpaxpamirdecksimulator.domain.entities.Car
         int resIDLoyalty = res.getIdentifier(drawableLoyaltyName , "drawable", mContext.getPackageName());
         drawableLoyalty = ResourcesCompat.getDrawable(res, resIDLoyalty, null);
 
-        String drawableFiguresName = getLoyalty();
+        String drawableFiguresName = getFigures();
         int resIDFigures = res.getIdentifier(drawableFiguresName , "drawable", mContext.getPackageName());
-        drawableLoyalty = ResourcesCompat.getDrawable(res, resIDFigures, null);
+        drawableFigures = ResourcesCompat.getDrawable(res, resIDFigures, null);
 
-        String drawableLineButtonName = getLoyalty();
+        String drawableLineButtonName = "figl"+getLineChosen();
         int resIDLineButton = res.getIdentifier(drawableLineButtonName , "drawable", mContext.getPackageName());
-        drawableLoyalty = ResourcesCompat.getDrawable(res, resIDLineButton, null);
+        drawableLineButton = ResourcesCompat.getDrawable(res, resIDLineButton, null);
 
-        String drawableActionName = getLoyalty();
+        String drawableActionName = getAction();
         int resIDAction = res.getIdentifier(drawableActionName , "drawable", mContext.getPackageName());
-        drawableLoyalty = ResourcesCompat.getDrawable(res, resIDAction, null);
+        drawableAction = ResourcesCompat.getDrawable(res, resIDAction, null);
     }
 
 
