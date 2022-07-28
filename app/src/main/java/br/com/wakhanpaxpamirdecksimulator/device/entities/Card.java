@@ -9,7 +9,6 @@ public class Card extends br.com.wakhanpaxpamirdecksimulator.domain.entities.Car
 
     private Drawable drawableLoyalty;
     private Drawable drawableFigures;
-    private Drawable drawableLineButton;
     private Drawable drawableAction;
 
     private Context mContext;
@@ -27,10 +26,6 @@ public class Card extends br.com.wakhanpaxpamirdecksimulator.domain.entities.Car
         String drawableFiguresName = getFigures();
         int resIDFigures = res.getIdentifier(drawableFiguresName , "drawable", mContext.getPackageName());
         drawableFigures = ResourcesCompat.getDrawable(res, resIDFigures, null);
-
-        String drawableLineButtonName = "figl"+getLineChosen();
-        int resIDLineButton = res.getIdentifier(drawableLineButtonName , "drawable", mContext.getPackageName());
-        drawableLineButton = ResourcesCompat.getDrawable(res, resIDLineButton, null);
 
         String drawableActionName = getAction();
         int resIDAction = res.getIdentifier(drawableActionName , "drawable", mContext.getPackageName());
@@ -52,14 +47,6 @@ public class Card extends br.com.wakhanpaxpamirdecksimulator.domain.entities.Car
 
     public void setDrawableFigures(Drawable drawableFigures) {
         this.drawableFigures = drawableFigures;
-    }
-
-    public Drawable getDrawableLineButton() {
-        return drawableLineButton;
-    }
-
-    public void setDrawableLineButton(Drawable drawableLineButton) {
-        this.drawableLineButton = drawableLineButton;
     }
 
     public Drawable getDrawableAction() {
