@@ -73,9 +73,9 @@ public class GameFragment extends Fragment implements DataOut.Callback<LiveData<
     @Override
     public void onResume(){
         super.onResume();
-        viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity()
-                .getApplication()).create(LoadDeckViewModel.class);
         if(currentCard == null || cards == null){
+            viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity()
+                    .getApplication()).create(LoadDeckViewModel.class);
             loadDeck();
         }
     }

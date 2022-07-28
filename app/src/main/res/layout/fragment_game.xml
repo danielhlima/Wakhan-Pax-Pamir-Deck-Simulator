@@ -34,6 +34,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="left"
             android:orientation="horizontal">
 
             <ImageView
@@ -56,11 +57,12 @@
             <TextView
                 android:id="@+id/tv_top_bottom"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_marginRight="10dp"
                 android:text="BOTTOM (RIGHT)"
                 android:textColor="@color/design_default_color_error"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
