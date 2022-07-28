@@ -57,6 +57,7 @@ public class GameFragment extends Fragment implements DataOut.Callback<LiveData<
         ivFigures = (ImageView)view.findViewById(R.id.iv_figures);
         ivLineChosen = (ImageView)view.findViewById(R.id.iv_line_number);
         ivAction = (ImageView)view.findViewById(R.id.iv_card_action);
+        tvBottomTop = (TextView)view.findViewById(R.id.tv_top_bottom);
 
         ((Button)view.findViewById(R.id.bt_pick_a_card)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,6 +142,13 @@ public class GameFragment extends Fragment implements DataOut.Callback<LiveData<
                 ivLineChosen.setImageDrawable(ResourcesCompat.getDrawable(getContext().getResources(), R.drawable.figl0, null));
                 break;
         }
+
+        if(currentCard.isTop()){
+            tvBottomTop.setText(nextCard.getBottomLeft()[0]);
+        }else{
+            tvBottomTop.setText(nextCard.getBottomLeft()[1]);
+        }
+
         final Drawable drawableAction = currentCard.getDrawableAction();
 
         ivLoyalty.setImageDrawable(drawableLoyalty);

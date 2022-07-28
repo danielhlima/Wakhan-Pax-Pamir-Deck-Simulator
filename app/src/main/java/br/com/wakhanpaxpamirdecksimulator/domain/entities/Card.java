@@ -9,8 +9,9 @@ public class Card {
     private int lineChosen;
     private int[] linesBack;
     private boolean isTop;
+    private String[] bottomLeft;
 
-    public Card(String name, String loyalty, String figures, String action, int lineChosen, int[] linesBack, boolean isTop) {
+    public Card(String name, String loyalty, String figures, String action, int lineChosen, int[] linesBack, boolean isTop, String[] bottomLeft) {
         this.name = name;
         this.loyalty = loyalty;
         this.figures = figures;
@@ -18,6 +19,7 @@ public class Card {
         this.lineChosen = lineChosen;
         this.linesBack = linesBack;
         this.isTop = isTop;
+        this.bottomLeft = bottomLeft;
     }
 
     public String getName() {
@@ -74,5 +76,13 @@ public class Card {
 
     public void setTop(boolean top) {
         isTop = top;
+    }
+
+    public String[] getBottomLeft() {
+        return bottomLeft;
+    }
+
+    public void setBottomLeft(String[] bottomLeft) {
+        this.bottomLeft = bottomLeft;
     }
 }

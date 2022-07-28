@@ -13,8 +13,8 @@ public class Card extends br.com.wakhanpaxpamirdecksimulator.domain.entities.Car
 
     private Context mContext;
 
-    public Card(Context context, String name, String loyalty, String figures, String action, int lineChosen, int[] linesBack, boolean isTop) {
-        super(name, loyalty, figures, action, lineChosen, linesBack, isTop);
+    public Card(Context context, String name, String loyalty, String figures, String action, int lineChosen, int[] linesBack, boolean isTop, String[] bottomLeft) {
+        super(name, loyalty, figures, action, lineChosen, linesBack, isTop, bottomLeft);
         this.mContext = context;
 
         Resources res = mContext.getResources();
