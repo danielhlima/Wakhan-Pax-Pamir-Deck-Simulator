@@ -68,6 +68,9 @@ public class GameFragment extends Fragment implements DataOut.Callback<LiveData<
         ((Button)view.findViewById(R.id.bt_pick_a_card)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ivLineChosen.setVisibility(View.INVISIBLE);
+                tvBottomTop.setVisibility(View.INVISIBLE);
+                ivBlackArrow.setVisibility(View.INVISIBLE);
                 player.start();
                 pickACard();
                 draw();
@@ -158,10 +161,6 @@ public class GameFragment extends Fragment implements DataOut.Callback<LiveData<
         }else{
             tvBottomTop.setText(nextCard.getBottomLeft()[1]);
         }
-
-        ivLineChosen.setVisibility(View.INVISIBLE);
-        tvBottomTop.setVisibility(View.INVISIBLE);
-        ivBlackArrow.setVisibility(View.INVISIBLE);
 
         final ImageView ivLoyalty_ = ivLoyalty;
         ivLoyalty_.setRotationY(0f);
