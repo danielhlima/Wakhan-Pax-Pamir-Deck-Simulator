@@ -1,5 +1,7 @@
 package br.com.wakhanpaxpamirdecksimulator.view.fragments;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -31,7 +33,10 @@ public class GameFragment extends Fragment implements DataOut.Callback<LiveData<
     private ImageView ivFigures;
     private ImageView ivLineChosen;
     private ImageView ivAction;
+    private ImageView ivBlackArrow;
     private TextView tvBottomTop;
+
+    private MediaPlayer player;
 
     private LoadDeckViewModel viewModel;
     private int currentDeckIndex;
@@ -57,11 +62,13 @@ public class GameFragment extends Fragment implements DataOut.Callback<LiveData<
         ivFigures = (ImageView)view.findViewById(R.id.iv_figures);
         ivLineChosen = (ImageView)view.findViewById(R.id.iv_line_number);
         ivAction = (ImageView)view.findViewById(R.id.iv_card_action);
+        ivBlackArrow = (ImageView)view.findViewById(R.id.iv_black_arrow);
         tvBottomTop = (TextView)view.findViewById(R.id.tv_top_bottom);
 
         ((Button)view.findViewById(R.id.bt_pick_a_card)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                player.start();
                 pickACard();
                 draw();
             }
@@ -105,6 +112,7 @@ public class GameFragment extends Fragment implements DataOut.Callback<LiveData<
     }
 
     private void pickACard() {
+        player = MediaPlayer.create(getContext(), R.raw.cardflip);
         if(currentDeckIndex < cards.size()-1 && currentDeckIndex+1 < cards.size()-1){
             currentCard = (br.com.wakhanpaxpamirdecksimulator.device.entities.Card)cards.get(currentDeckIndex);
             nextCard = (br.com.wakhanpaxpamirdecksimulator.device.entities.Card)cards.get(currentDeckIndex+1);
@@ -118,6 +126,8 @@ public class GameFragment extends Fragment implements DataOut.Callback<LiveData<
     private void draw(){
         final Drawable drawableLoyalty = currentCard.getDrawableLoyalty();
         final Drawable drawableFigures = currentCard.getDrawableFigures();
+        final Drawable drawableAction = currentCard.getDrawableAction();
+
         int line = nextCard.getLinesBack()[currentCard.getLineChosen()];
         switch (line){
             case 0:
@@ -149,10 +159,50 @@ public class GameFragment extends Fragment implements DataOut.Callback<LiveData<
             tvBottomTop.setText(nextCard.getBottomLeft()[1]);
         }
 
-        final Drawable drawableAction = currentCard.getDrawableAction();
+        ivLineChosen.setVisibility(View.INVISIBLE);
+        tvBottomTop.setVisibility(View.INVISIBLE);
+        ivBlackArrow.setVisibility(View.INVISIBLE);
 
-        ivLoyalty.setImageDrawable(drawableLoyalty);
-        ivFigures.setImageDrawable(drawableFigures);
-        ivAction.setImageDrawable(drawableAction);
+        final ImageView ivLoyalty_ = ivLoyalty;
+        ivLoyalty_.setRotationY(0f);
+        ivLoyalty_.animate().rotationY(90f).setListener(new AnimatorListenerAdapter()
+        {
+            @Override
+            public void onAnimationEnd(Animator animation)
+            {
+                ivLoyalty_.setImageDrawable(drawableLoyalty);
+                ivLoyalty_.setRotationY(270f);
+                ivLoyalty_.animate().rotationY(360f).setListener(null);
+            }
+        });
+
+        final ImageView ivFigures_ = ivFigures;
+        ivFigures_.setRotationY(0f);
+        ivFigures_.animate().rotationY(90f).setListener(new AnimatorListenerAdapter()
+        {
+            @Override
+            public void onAnimationEnd(Animator animation)
+            {
+                ivFigures_.setImageDrawable(drawableFigures);
+                ivFigures_.setRotationY(270f);
+                ivFigures_.animate().rotationY(360f).setListener(null);
+            }
+        });
+
+        final ImageView ivAction_ = ivAction;
+        ivAction_.setRotationY(0f);
+        ivAction_.animate().rotationY(90f).setListener(new AnimatorListenerAdapter()
+        {
+            @Override
+            public void onAnimationEnd(Animator animation)
+            {
+                ivAction_.setImageDrawable(drawableAction);
+                ivAction_.setRotationY(270f);
+                ivAction_.animate().rotationY(360f).setListener(null);
+                ivLineChosen.setVisibility(View.VISIBLE);
+                tvBottomTop.setVisibility(View.VISIBLE);
+                ivBlackArrow.setVisibility(View.VISIBLE);
+            }
+        });
     }
 }
