@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.Collections;
@@ -35,6 +36,7 @@ public class GameFragment extends Fragment implements DataOut.Callback<LiveData<
     private ImageView ivAction;
     private ImageView ivBlackArrow;
     private TextView tvBottomTop;
+    private ProgressBar pBar;
 
     private MediaPlayer player;
 
@@ -64,6 +66,7 @@ public class GameFragment extends Fragment implements DataOut.Callback<LiveData<
         ivAction = (ImageView)view.findViewById(R.id.iv_card_action);
         ivBlackArrow = (ImageView)view.findViewById(R.id.iv_black_arrow);
         tvBottomTop = (TextView)view.findViewById(R.id.tv_top_bottom);
+        pBar = (ProgressBar)view.findViewById(R.id.pb_loading);
 
         ((Button)view.findViewById(R.id.bt_pick_a_card)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +100,7 @@ public class GameFragment extends Fragment implements DataOut.Callback<LiveData<
             shuffleDeck();
             pickACard();
             draw();
+            pBar.setVisibility(View.INVISIBLE);
         }
     }
 
