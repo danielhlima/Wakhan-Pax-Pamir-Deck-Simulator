@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="icons">
+        <item>@drawable/ic_play</item>
+        <item>@drawable/ic_search_white_24dp</item>
+        <item>@drawable/ic_settings_white_24dp</item>
+    </array>
+    <array name="colors">
+        <item>#12F0BC</item>
+        <item>#B01279</item>
+        <item>#0AF044</item>
+    </array>
+</resources>

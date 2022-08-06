@@ -10,6 +10,8 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,8 +19,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
@@ -37,6 +41,7 @@ public class GameFragment extends Fragment implements DataOut.Callback<LiveData<
     private ImageView ivBlackArrow;
     private TextView tvBottomTop;
     private ProgressBar pBar;
+    private LinearLayout llBts;
 
     private MediaPlayer player;
 
@@ -45,6 +50,7 @@ public class GameFragment extends Fragment implements DataOut.Callback<LiveData<
     private List<Card> cards;
     br.com.wakhanpaxpamirdecksimulator.device.entities.Card currentCard;
     br.com.wakhanpaxpamirdecksimulator.device.entities.Card nextCard;
+    br.com.wakhanpaxpamirdecksimulator.device.entities.Card previousCard;
 
     public GameFragment() {}
 
@@ -67,16 +73,28 @@ public class GameFragment extends Fragment implements DataOut.Callback<LiveData<
         ivBlackArrow = (ImageView)view.findViewById(R.id.iv_black_arrow);
         tvBottomTop = (TextView)view.findViewById(R.id.tv_top_bottom);
         pBar = (ProgressBar)view.findViewById(R.id.pb_loading);
+        player = MediaPlayer.create(getContext(), R.raw.cardflip);
+        llBts = (LinearLayout)view.findViewById(R.id.ll_bts);
 
-        ((Button)view.findViewById(R.id.bt_pick_a_card)).setOnClickListener(new View.OnClickListener() {
+        ((Button)view.findViewById(R.id.bt_next)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ivLineChosen.setVisibility(View.INVISIBLE);
-                tvBottomTop.setVisibility(View.INVISIBLE);
-                ivBlackArrow.setVisibility(View.INVISIBLE);
-                player.start();
-                pickACard();
-                draw();
+                pickNextCard();
+            }
+        });
+
+        ((Button)view.findViewById(R.id.bt_prev)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pickPreviowsCard();
+            }
+        });
+
+        ((Button)view.findViewById(R.id.bt_help)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavDirections navDirections = GameFragmentDirections.actionGameFragmentToHelpFragment();
+                Navigation.findNavController(getActivity(), R.id.nav_host).navigate(navDirections);
             }
         });
 
@@ -90,6 +108,9 @@ public class GameFragment extends Fragment implements DataOut.Callback<LiveData<
             viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity()
                     .getApplication()).create(LoadDeckViewModel.class);
             loadDeck();
+        }else{
+            draw();
+            pBar.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -98,8 +119,7 @@ public class GameFragment extends Fragment implements DataOut.Callback<LiveData<
         if(parameter != null){
             cards = parameter.getValue();
             shuffleDeck();
-            pickACard();
-            draw();
+            pickNextCard();
             pBar.setVisibility(View.INVISIBLE);
         }
     }
@@ -118,19 +138,40 @@ public class GameFragment extends Fragment implements DataOut.Callback<LiveData<
         currentDeckIndex = 0;
     }
 
-    private void pickACard() {
-        player = MediaPlayer.create(getContext(), R.raw.cardflip);
+    private void pickPreviowsCard(){
+        if(previousCard != null){
+            currentDeckIndex-=2;
+            pickNextCard();
+        }else{
+            Toast.makeText(getActivity().getApplicationContext(), "This is the first card", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void pickNextCard() {
         if(currentDeckIndex < cards.size()-1 && currentDeckIndex+1 < cards.size()-1){
+            if(ConfigurationFragment.isSoundEnabled)
+                player.start();
             currentCard = (br.com.wakhanpaxpamirdecksimulator.device.entities.Card)cards.get(currentDeckIndex);
             nextCard = (br.com.wakhanpaxpamirdecksimulator.device.entities.Card)cards.get(currentDeckIndex+1);
+            if(currentDeckIndex == 0){
+                previousCard = null;
+            }else{
+                previousCard = (br.com.wakhanpaxpamirdecksimulator.device.entities.Card)cards.get(currentDeckIndex-1);
+            }
             currentDeckIndex++;
+            draw();
         }else{
             shuffleDeck();
-            pickACard();
+            pickNextCard();
         }
     }
 
     private void draw(){
+        ivLineChosen.setVisibility(View.INVISIBLE);
+        tvBottomTop.setVisibility(View.INVISIBLE);
+        ivBlackArrow.setVisibility(View.INVISIBLE);
+        llBts.setVisibility(View.INVISIBLE);
+
         final Drawable drawableLoyalty = currentCard.getDrawableLoyalty();
         final Drawable drawableFigures = currentCard.getDrawableFigures();
         final Drawable drawableAction = currentCard.getDrawableAction();
@@ -205,6 +246,7 @@ public class GameFragment extends Fragment implements DataOut.Callback<LiveData<
                 ivLineChosen.setVisibility(View.VISIBLE);
                 tvBottomTop.setVisibility(View.VISIBLE);
                 ivBlackArrow.setVisibility(View.VISIBLE);
+                llBts.setVisibility(View.VISIBLE);
             }
         });
     }

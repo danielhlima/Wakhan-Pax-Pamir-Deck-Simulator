@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/ch1b"
-    tools:context=".view.fragments.HomeFragment">
+    tools:context=".view.fragments.GameFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -80,6 +80,38 @@
                 android:adjustViewBounds="true"
                 android:scaleType="fitStart" />
 
+            <LinearLayout
+                android:id="@+id/ll_bts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:visibility="invisible"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/bt_prev"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Prev"/>
+
+                <Button
+                    android:id="@+id/bt_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Next"/>
+
+                <Button
+                    android:id="@+id/bt_help"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="HELP"/>
+
+            </LinearLayout>
+
         </LinearLayout>
 
     </ScrollView>
@@ -89,10 +121,4 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <Button
-        android:id="@+id/bt_pick_a_card"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text=""
-        android:alpha="0"/>
 </FrameLayout>

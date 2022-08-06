@@ -3,5 +3,25 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="presentation">"This app  is created and maintained by Daniel Lima (ArathornBR). It is a free software project.\nIf you would like to improve this app, please join me at:\ngithub.com/danielhlima/Wakhan-Pax-Pamir-Deck-Simulator"</string>
-    <string name="licence">"This app is licensed under Creative Commons BY-NC-SA 4.0.\ncreativecommons.org/licenses/by-nc-sa/4.0/\n\nPax Pamir 2nd Edition\nDesigner: Cole Wehrle.\nWakhan designer: Richard Wilkins \nPublisher: Wehrlegig Games llc\nwehrlegig.com/collections/frontpage/products/pax-pamir-second-edition-1"</string>
+    <string name="licence">"This app is licensed under Creative Commons BY-NC-SA 4.0.\ncreativecommons.org/licenses/by-nc-sa/4.0/"</string>
+    <string name="about">About this app</string>
+    <string name="licences">Licences</string>
+    <string name="pax_pamir">Pax Pamir 2nd Edition Designer:</string>
+    <string name="cole">Cole Wehrle</string>
+    <string name="wakhan_designer">Wakhan designer:</string>
+    <string name="richard_wilkins">Richard Wilkins</string>
+    <string name="publisher">Publisher:</string>
+    <string name="wehrlegig">Wehrlegig Games llc</string>
+    <string name="address">Address:</string>
+    <string name="site_wehrle">https://wehrlegig.com/collections/frontpage/products/pax-pamir-second-edition-1</string>
+    <string name="menu_circle_licence">For the main menu I used CircleMenu for Android, developed by Ramotion, under MIT Licence. You can have more information here: https://www.ramotion.com/</string>
+    <string name="sound">Sound: </string>
+    <string name="there_is_a_dc_card">There is a dominance check card on the board?</string>
+    <string name="yes">Yes!</string>
+    <string name="wakhan_ambition">If Wakhan is able to purchase the Dominance Check and score the
+most victory points and/or win the game, she will use her action to do that, regardless of
+the actions listed on her AI card.</string>
+    <string name="wakhan_radicalize_with_instructions">If there are specific instructions: Follow them. Ties are decided by the cheapest card in the market with the highest card number breaking any further ties.</string>
+    <string name="radicalize">When radicalizing</string>
+    <string name="wakhan_radicalize_with_dcc">Wakhan only purchases a Dominance Check event card if she will score the most points from the check (and/or wins). However, when a Dominance Check is in the market, Wakhan will choose the cheapest Patriot loyal to the dominant coalition, then the cheapest card with the most Army and/or Road impact icons, or, if no coalition is dominant, she will chose the cheapest card with the most spy and/or tribe impact icons. If there is a tie, use the highest card number.</string>
 </resources>
